@@ -15,6 +15,10 @@ class CountriesController < ApplicationController
   def show
     @country = Country.find(params[:id])
 
+    if current_user
+      current_user.countries << @country if !current_user.countries.include?(@country)
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @country }

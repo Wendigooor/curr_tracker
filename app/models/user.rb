@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
+
+  has_many :user_countries
+  has_many :countries, :through => :user_countries
+  accepts_nested_attributes_for :user_countries
 end
